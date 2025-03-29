@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Clase2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Menu pp");
+            Console.WriteLine("1 - Ingreso de cantidad fija de notas");
+            Console.WriteLine("2 - Ingreso indefinido de notas");
+            Console.WriteLine("3 - Mostrar resumen");
+            Console.WriteLine("4 - Seleccione una opcion");
+
+
+            string opcion =  Console.ReadLine();
+
+            switch (opcion)
+            {
+                case "1":
+                    int numero = IngresoFijo();
+                    break;
+                    case "2":
+                    //IngresoIndefinido();
+                        break;
+                    case "3":
+                    //MostrarResumen();
+                        break;
+                    case "4":
+                    Console.WriteLine("Saliendo");
+                        break;
+
+
+                default:
+                    Console.WriteLine("Opcion invalida");
+                    break;
+            }
+        }
+
+        static void IngresoFijo()
+        {
+            int aprobados = 0;
+            int reprobados = 0;
+            int cantidad;
+            float nota;
+            Console.WriteLine("Cuantas notas desea ingresar?");
+            cantidad = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                Console.Write($"Ingrese la nota del estudiante{i+1}");
+                nota = float.Parse(Console.ReadLine());
+                if (nota >= 7)
+                {
+                    Console.WriteLine("Aprobado");
+                    aprobados++;
+                }
+                else
+                {
+                    Console.WriteLine("Desaprobo");
+                    reprobados++;
+                }
+            }
+
+           void IngresoIndefinido()
+            {
+               Console.WriteLine("Ingresa la nota");
+               int notaIndefinida = int.Parse(Console.ReadLine());
+               Console.WriteLine("Desea seguir ingresando?");
+               var decision = Console.ReadLine();
+               if (string decision = S)
+                {
+                   
+                }
+            }
+        }
+
+    }
+}
+// tipodedato.metodostatic
+
+//nombredelavariable.metodoNostatico
