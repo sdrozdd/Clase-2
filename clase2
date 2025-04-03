@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Clase2
 {
@@ -11,34 +6,43 @@ namespace Clase2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Menu pp");
-            Console.WriteLine("1 - Ingreso de cantidad fija de notas");
-            Console.WriteLine("2 - Ingreso indefinido de notas");
-            Console.WriteLine("3 - Mostrar resumen");
-            Console.WriteLine("4 - Seleccione una opcion");
+            MostrarMenu();
+        }
 
-
-            string opcion =  Console.ReadLine();
-
-            switch (opcion)
+        static void MostrarMenu()
+        {
+            while (true) // Mantiene el menú activo hasta que el usuario elija salir
             {
-                case "1":
-                    int numero = IngresoFijo();
-                    break;
+                Console.Clear(); // Limpia la pantalla para mejorar la experiencia
+                Console.WriteLine("=== MENÚ PRINCIPAL ===");
+                Console.WriteLine("1 - Ingreso de cantidad fija de notas");
+                Console.WriteLine("2 - Ingreso indefinido de notas");
+                Console.WriteLine("3 - Mostrar resumen (pendiente)");
+                Console.WriteLine("4 - Salir");
+                Console.Write("Seleccione una opción: ");
+
+                string opcion = Console.ReadLine();
+
+                switch (opcion)
+                {
+                    case "1":
+                        IngresoFijo();
+                        break;
                     case "2":
-                    //IngresoIndefinido();
+                        IngresoIndefinido();
                         break;
                     case "3":
-                    //MostrarResumen();
+                        // MostrarResumen();
+                        Console.WriteLine("Funcionalidad pendiente...");
+                        VolverAlMenu();
                         break;
                     case "4":
-                    Console.WriteLine("Saliendo");
+                        Console.WriteLine("Saliendo del programa...");
+                        return; // Termina la ejecución del programa
+                    default:
+                        Console.WriteLine("Opción inválida. Intente nuevamente.");
                         break;
-
-
-                default:
-                    Console.WriteLine("Opcion invalida");
-                    break;
+                }
             }
         }
 
@@ -48,13 +52,23 @@ namespace Clase2
             int reprobados = 0;
             int cantidad;
             float nota;
-            Console.WriteLine("Cuantas notas desea ingresar?");
-            cantidad = int.Parse(Console.ReadLine());
+
+            Console.Clear();
+            Console.WriteLine("=== INGRESO FIJO DE NOTAS ===");
+            Console.Write("¿Cuántas notas desea ingresar? ");
+            while (!int.TryParse(Console.ReadLine(), out cantidad) || cantidad <= 0)
+            {
+                Console.Write("Entrada inválida. Ingrese un número positivo: ");
+            }
 
             for (int i = 0; i < cantidad; i++)
             {
-                Console.Write($"Ingrese la nota del estudiante{i+1}");
-                nota = float.Parse(Console.ReadLine());
+                Console.Write($"Ingrese la nota del estudiante {i + 1}: ");
+                while (!float.TryParse(Console.ReadLine(), out nota) || nota < 0 || nota > 10)
+                {
+                    Console.Write("Nota inválida. Ingrese un número entre 0 y 10: ");
+                }
+
                 if (nota >= 7)
                 {
                     Console.WriteLine("Aprobado");
@@ -62,26 +76,54 @@ namespace Clase2
                 }
                 else
                 {
-                    Console.WriteLine("Desaprobo");
+                    Console.WriteLine("Desaprobado");
                     reprobados++;
                 }
             }
 
-           void IngresoIndefinido()
-            {
-               Console.WriteLine("Ingresa la nota");
-               int notaIndefinida = int.Parse(Console.ReadLine());
-               Console.WriteLine("Desea seguir ingresando?");
-               var decision = Console.ReadLine();
-               if (string decision = S)
-                {
-                   
-                }
-            }
+            Console.WriteLine("\n=== RESUMEN ===");
+            Console.WriteLine($"Aprobados: {aprobados}");
+            Console.WriteLine($"Reprobados: {reprobados}");
+
+            VolverAlMenu();
         }
 
+        static void IngresoIndefinido()
+        {
+            int nota;
+
+            Console.Clear();
+            Console.WriteLine("=== INGRESO INDEFINIDO DE NOTAS ===");
+
+            while (true)
+            {
+                Console.Write("Ingrese una nota o un número negativo para volver al menú: ");
+                string entrada = Console.ReadLine();
+
+                if (!int.TryParse(entrada, out nota))
+                {
+                    Console.WriteLine("Entrada inválida, intente de nuevo.");
+                    continue;
+                }
+
+                if (nota < 0)
+                {
+                    Console.WriteLine("Regresando al menú...");
+                    break;
+                }
+
+                Console.WriteLine($"Ingresaste la nota: {nota}");
+            }
+
+            VolverAlMenu();
+        }
+
+        static void VolverAlMenu()
+        {
+            Console.WriteLine("\nPresione cualquier tecla para volver al menú...");
+            Console.ReadKey();
+            Console.Clear();
+        }
     }
 }
-// tipodedato.metodostatic
 
-//nombredelavariable.metodoNostatico
